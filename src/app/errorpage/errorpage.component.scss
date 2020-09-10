@@ -1,365 +1,123 @@
-/* You can add global styles to this file, and also import other style files */
-
-@import "assets/fonts/stylesheet.css";
-* {
-    margin: 0px;
-    padding: 0px;
-    outline: 0px;
-    box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-}
-
-a {
-    text-decoration: none;
-    color: #662D91;
-    transition: all 0.4s linear 0s;
-}
-
-a:hover {
-    transition: all 0.4s linear 0s;
-    color: #430E6A;
-}
-
-a img,
-img {
-    border: 0px;
-    outline: none;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-a,
-input[type="submit"],
-button {
-    outline: none;
-}
-
-.clear {
-    clear: both;
-}
-
-::-moz-placeholder {
-    opacity: 1;
-}
-
-input[type=submit],
-button,
-select {
-    -moz-appearance: none;
-    -webkit-appearance: none;
-}
-
-input,
-select,
-button,
-textarea {
-    font-family: 'MADETOMMY';
-}
-
-input[type=submit],
-button {
-    cursor: pointer;
-    transition: all 0.4s linear 0s;
-}
-
-input[type="submit"],
-input[type="text"],
-input[type="search"],
-button,
-input[type="email"],
-input[type="tel"],
-input[type="number"],
-textarea,
-select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: 0;
-    border: 0;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-input[type=number] {
-    -moz-appearance: textfield;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-ul,
-li,
-label,
-input,
-textarea,
-img,
-submit,
-button,
-a {
-    margin: 0px;
-    padding: 0px;
-    outline: none;
-    list-style: none;
-}
-
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-font,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-tt,
-var,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td {
-    border: 0;
-    font-size: 100%;
-    font-style: inherit;
-    font-weight: inherit;
-    margin: 0;
-    outline: 0;
-    padding: 0;
-    vertical-align: baseline;
-}
-
-html {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    font-size: 62.5%;
-    overflow-y: scroll;
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-}
-
-q {
-    -webkit-hyphens: none;
-    -moz-hyphens: none;
-    -ms-hyphens: none;
-    hyphens: none;
-    quotes: none;
-}
-
-a:focus {
-    outline: 0;
-    outline: 0;
-}
-
-a:hover,
-a:active {
-    outline: 0;
-}
-
-a img {
-    border: 0;
-}
-
-body {
-    color: #040505;
-    font-weight: normal;
-    font-size: 20px;
-    line-height: 28px;
-    font-family: 'MADETOMMY';
-}
-
-.container {
-    width: 88%;
-    margin: 0 auto;
-    max-width: 1380px;
-}
-
-strong {
-    font-weight: 500;
-}
-
-h1,
-h2,
-.heading {
-    font-size: 34px;
-    line-height: 42px;
-    font-weight: 400;
-    color: #683092;
-    text-transform: uppercase;
-}
-
-h3 {
-    font-size: 28px;
-    line-height: 36px;
-    font-weight: 400;
-    color: #040505;
-}
-
-.section {
-    width: 100%;
+.leftbar {
+    width: 26%;
     float: left;
-    padding: 100px 0;
-}
-
-.center {
+    background: url(../../assets/leftBg2.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 60px 3.5%;
     text-align: center;
 }
 
-.bgLight {
-    background: rgba(232, 240, 252, 0.4);
-}
-
-
-/* Header Section -- Start */
-
-.header .magiclogo img {
-    max-width: 80px;
-}
-
-.header {
+.prizeBox {
     width: 100%;
     float: left;
-    position: relative;
-    background: #F7F5F8;
-    box-shadow: 0px 7px 10px #00000029;
-    padding: 5px 0;
-    position: relative;
-    z-index: 99;
+    margin: 15px 0;
+    background: #68309214;
+    border: 2px solid #683092;
+    border-radius: 28px;
+    padding: 35px;
+    text-align: center;
 }
 
-.header .container {
+.prizeBox strong {
+    display: block;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 80px;
+    color: #683092;
+    line-height: 1.2;
+}
+
+.prizeBox h4 {
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 32px;
+    color: #683092;
+    line-height: 1.2;
+}
+
+.thankyou {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    float: left;
+}
+
+.thankyou .dflex {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    float: left;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
     align-items: center;
 }
 
-.header .container {
-    width: 100%;
-    max-width: 100%;
-    padding: 0 3%
-}
-
-.header .logo img {
-    max-width: 66px;
+.thankyou img {
+    max-width: 180px;
     display: block;
+    margin: 0 auto;
 }
 
-.header .magiclogo img {
-    max-width: 90px;
-    display: block;
+.thankyou h1 {
+    margin-left: 349px;
+    font-size: 178px;
+    line-height: 1.2;
+    font-weight: 400;
+    text-transform: none;
+    font-family: 'MADETommySoft';
+    padding: 30px 0 20px;
+}
+.thankyou h5{ 
+    margin-left: 329px;
+    margin-left: 329px;
+    font-size: 53px;
+    margin-bottom: 17px;
+    color: #666563;
+    font-family: 'MADETommySoft';
+}
+.thankyou p {
+    margin-left: 329px;
+    font-size: 15px;
+    line-height: 28px;
+    color: #707070;
+//    margin: 0 0 20px;
 }
 
-
-/* Header Section -- End */
-
-
-/* Footer Section -- Start */
-
-.footer {
-    width: 100%;
-    float: left;
-    background: #662D91;
-    color: #fff;
-    padding: 15px 3%;
-    font-size: 20px;
-    line-height: 24px;
-    font-weight: 300;
+.thankyou h6 {
+    font-size: 18px;
+    color: #040505;
+    line-height: 28px;
+    margin: 0 0 15px;
 }
 
-.footer a {
-    color: #fff;
-}
-
-.footer .left {
-    float: left;
-}
-
-.footer .right {
-    float: right;
-}
-
-.footer .divider {
+.fbLike a {
     display: inline-block;
-    padding: 0 20px;
+    background: #0969F9;
+    color: #fff;
+    min-width: 200px;
+    height: 48px;
+    line-height: 48px;
+    padding: 0 25px;
+    font-size: 20px;
+    text-align: left;
 }
 
-.footer a:hover {
-    text-decoration: underline;
+.fbLike a i {
+    margin-right: 10px;
+    font-size: 30px;
+    position: relative;
+    top: 7px;
 }
 
-
-/* Footer Section -- End */
-
-.formsection {
-    float: left;
-    background: #fff;
-    min-height: 84vh;
-    width: 74%;
-    background: #fff;
-    padding: 40px 5% 80px 3%;
+.fbLike a img {
+    display: inline-block;
 }
 
-.formsection .heading {
-    border-bottom: 1px solid #cdcdcd;
-    padding-bottom: 15px;
-    margin: 0 0 10px;
+.fbLike a:hover {
+    opacity: 0.8;
 }
 
 

@@ -1,0 +1,35 @@
+.header .magiclogo img {max-width: 80px;}
+.header{ width:100%; float:left; position:relative; background: #F7F5F8;box-shadow: 0px 7px 10px #00000029;  padding:5px 0; position:relative; z-index:99;}
+.header .container{display:flex; justify-content:space-between;align-items:center;}
+.header .container{width:100%; max-width:100%; padding:0 3%}
+.header .logo img{ max-width:66px;display:block;}
+.header .magiclogo img{ max-width:90px; display:block;}
+
+.fullSection{ width:100%; float:left; display:flex;}
+
+
+.leftbar{ width:26%; float:left; background:url(../../assets/leftBg2.jpg) no-repeat; background-size:cover; background-position:center; padding:60px 3.5%; text-align:center;}
+.prizeBox{ width:100%; float:left; margin:15px 0;background:#68309214;border: 2px solid #683092;border-radius: 28px; padding:35px; text-align:center;}
+.prizeBox strong{ display:block; text-transform:uppercase; font-weight:400; font-size:80px; color:#683092; line-height:1.2;}
+.prizeBox h4{ text-transform:uppercase; font-weight:300; font-size:32px; color:#683092; line-height:1.2;}
+
+
+.thankyou{ width:100%; height:100%; position:relative; float:left;}
+.thankyou .dflex{width:100%; height:100%; position:relative; float:left; display:flex; flex-direction:column; justify-content:center; text-align:center; align-items:center;}
+
+.thankyou img{ max-width:180px; display:block; margin:0 auto;}
+.thankyou h1{ font-size:60px; line-height:1.2; font-weight:400; text-transform:none;font-family: 'MADETommySoft'; padding:30px 0 20px;}
+.thankyou p{ font-size:15px; line-height:28px; color:#707070; margin:0 0 20px;}
+.thankyou h6{ font-size:18px; color:#040505; line-height:28px; margin:0 0 15px;}
+.fbLike a{ display:inline-block; background:#0969F9; color:#fff; min-width:200px; height:48px; line-height:48px; padding:0 25px; font-size:20px; text-align:left;}
+.fbLike a i{ margin-right:10px; font-size:30px; position:relative; top:5px;}
+.fbLike a:hover{ background:#683092;}
+
+/* Footer Section -- Start */
+.footer{ width:100%; float:left; background:#662D91; color:#fff; padding:15px 3%; font-size:20px; line-height:24px; font-weight:300;}
+.footer a{ color:#fff;}
+.footer .left{ float:left;}
+.footer .right{ float:right;}
+.footer .divider{ display:inline-block; padding:0 20px;}
+.footer a:hover{ text-decoration:underline;}
+/* Footer Section -- End */
