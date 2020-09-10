@@ -104,35 +104,38 @@
                                 <p>Upload Winning Proof for Vehicle Registration no: Please submit any document which has your vehicle number on it. Example – picture of your number plate, etc.</p>
                             </div>
                             <div class="col4">
-                                <div >
-                                    <input   type="file" accept="all/*" #Doc_proof formControlName="Doc_proof" [ngClass]="{ 'is-invalid': submitted && f.Doc_proof.errors }">
+                                <div class="fileBtn">
+                                    <input   type="file" accept="all/*" #Doc_proof formControlName="Doc_proof" (change)="onFileSelect(Doc_proof)" [ngClass]="{ 'is-invalid': submitted && f.Doc_proof.errors }">
+                                    <label for="file1">Choose File and upload</label>
                                     <div *ngIf="submitted && f.Doc_proof.errors" class="invalid-feedback">
                                         <div class="error" *ngIf="f.Doc_proof.errors.required">document is required</div>
                                     </div>
-                                    <!-- <label for="file1">Choose File and upload</label> -->
                                 </div>
                             </div>
+                            <span>{{fileInfo}}</span>
                         </div>
                         <div class="uploadDiv">
                             <div class="col8">
                                 <div class="radio">
-                                    <input type="checkbox" id="selfie"  (change)="toggleVisibility($event)" >
+                                    <input type="checkbox" id="selfie"  (change)="toggleVisibility($event)">
                                     <label for="selfie">Click a Selfie with Todays Newspaper and nominate yourself for the Bumper Prize.</label>
                                 </div>
                             </div>
                             <div class="col4">
-                                <div id="toglclass" >
-                                    <input   type="file" accept="all/*" #Doc_proof_opt formControlName="Doc_proof_opt">
-                                    <!-- <label for="file1">Choose File and upload</label> -->
+                                        <!-- class="fileBtn1" -->
+                                <div id="toglclass" [ngClass] = "{'fileBtn1':!marked , 'fileBtn':marked }">
+                                    <label for="file1">Choose File and upload</label>
+                                    <input   type="file" accept="all/*" (change)="onFileSelect1(Doc_proof_opt)" #Doc_proof_opt formControlName="Doc_proof_opt">
                                 </div>
                             </div>
+                            <span>{{fileInfo1}}</span>
                         </div>
                     </div>
                 </div>
                 <div class="form_row submit">
                     <div class="form_group w100">
                         <!-- class="btn"   ng-class="{'btn': contactForm.valid , 'btn': !contactForm.valid}"-->
-                        <button [ngClass] = "{'btn': !contactForm.invalid, 'btn1': contactForm.invalid}"  [disabled] = 'contactForm.invalid'>Submit</button>
+                        <button [ngClass] = "{'btn': !contactForm.invalid, 'btn1': contactForm.invalid}"  [disabled] = 'contactForm.invalid'>{{buttonData}}</button>
                     </div>
                 </div>
             </form>

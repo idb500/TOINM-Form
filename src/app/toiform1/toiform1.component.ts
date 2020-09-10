@@ -24,20 +24,23 @@ export class Toiform1Component implements OnInit {
   paperType1:any = [];
   submitted:boolean = false;
   base64File: string = null;
-  filename: string = null;
   paramsValue:any;
   listDataRes:any;
-  marked = true;
+  marked:boolean = false;
   list:any
   id:any
   pincode: any
+  buttonData:string = "Submit"
+  styleObject
+  // file name
+  fileInfo1: string;
+  fileInfo: string;
 
   constructor(private formBuilder: FormBuilder,private data:DataService,private route: ActivatedRoute,
     private router: Router) {
       this.route.queryParams.subscribe(params => {
       this.paramsValue = params;
       console.log(this.paramsValue)
-     // if (params["term"]) {}
       });
      }
 
@@ -47,7 +50,47 @@ export class Toiform1Component implements OnInit {
     
     
   }
-  createContactForm(){
+  onFileSelect(input: HTMLInputElement): void {
+    this.fileInfo = ''
+   
+    function formatBytes(bytes: number): string {
+      const UNITS = ['Bytes', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+      const factor = 1024;
+      let index = 0;
+      while (bytes >= factor) {
+        bytes /= factor;
+        index++;
+      }
+    return `${parseFloat(bytes.toFixed(2))} ${UNITS[index]}`;
+    }
+    try
+    {
+    const file = input.files[0];
+    this.fileInfo = `${file.name} (${formatBytes(file.size)})`;
+    }
+  catch { }
+  //  console.log(this.fileInfo)
+  }
+  onFileSelect1(input: HTMLInputElement): void {
+    this.fileInfo1 = ''
+    function formatBytes(bytes: number): string {
+      const UNITS = ['Bytes', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+      const factor = 1024;
+      let index = 0;
+      while (bytes >= factor) {
+        bytes /= factor;
+        index++;
+      }
+    return `${parseFloat(bytes.toFixed(2))} ${UNITS[index]}`;
+    }
+    try {
+    const file = input.files[0];
+    this.fileInfo1 = `${file.name} (${formatBytes(file.size)})`;
+    }
+    catch {}
+  //   console.log(this.fileInfo1)
+  }
+    createContactForm(){
     this.contactForm = this.formBuilder.group({
       mobileNumber: [{ value: '', disabled: true }],
       fullName:['',Validators.required],
@@ -60,7 +103,7 @@ export class Toiform1Component implements OnInit {
       Doc_proof: ['',Validators.required],
       Doc_proof_opt: [{value:'',disabled: true}]
     });
-     }
+      }
    
      onCheckBoxChanges(e: HTMLInputElement, id: number) {
       const index = this.NewsOptions.findIndex(_ => _.id === id);
@@ -77,84 +120,64 @@ export class Toiform1Component implements OnInit {
       {this.contactForm.controls['Doc_proof_opt'].enable();}
      
     }
+
     getListData(){
       this.list = this.paramsValue.list
       this.id = this.paramsValue.id
-      
       this.data.getListData(this.list, this.id).subscribe(res =>
         {
           this.listDataRes = res;
           console.log(this.listDataRes.status)
-          if(this.listDataRes.status === 205)
-          {
+          if(this.listDataRes.status === 205){
             // doc
             this.router.navigate(['/doc']);
             return
-          }
-          if(this.listDataRes.status === 204)
-          {
+            }
+          if(this.listDataRes.status === 204){
             // winner
             this.router.navigate(['/submit']);
             return
           }
-          if(this.listDataRes.status === 404)
-          {
-            this.router.navigate(['/linkExpire']);
+          if(this.listDataRes.status === 404){
+           // this.router.navigate(['/linkExpire']);
             return
           }
-          if(this.listDataRes.status === 200)
-          {
+          if(this.listDataRes.status === 200){
             // data
           let value = this.listDataRes.data;
-
-          // console.log(value.city);
-          // value.city = ''
-          if(value.city != '')
-          {
+          if(value.city != ''){
             this.contactForm.controls.City.setValue(value.city)
             this.contactForm.controls['City'].disable();
           }
-         
           this.contactForm.controls.mobileNumber.setValue(value.phone);
           this.contactForm.controls.pincode.setValue(value.pincode);
-         
-          }
-
-        })
-      
+        }
+      })
     }
 
   onSubmit() {
-    
+    this.buttonData = "Please wait.."
     this.submitted = true;
-    if (this.contactForm.invalid) {
+    if (this.contactForm.invalid){
       return;
   }
-  
     this.selectedNewspaper = []
     this.contactForm.value['NewsType'] = this.NewsOptions.filter(_=>_.isChecked);
-     
     this.selectedNewspaper.push( this.contactForm.value)
-    
     let newsArticle = this.selectedNewspaper[0].NewsType
-    for (let data of newsArticle)
-    {
+    for (let data of newsArticle){
       this.paperType1.push(data.paperType)
-      
     }
     const Image = this.Doc_proof.nativeElement;
-    if(Image.files && Image.files[0])
-    {
-      
+    if(Image.files && Image.files[0]){
       this.Doc_proof1 = Image.files[0];
       this.ImageFile = this.Doc_proof1
-      }
+    }
      const Image_opt = this.Doc_proof_opt.nativeElement
-     if(Image_opt.files && Image_opt.files[0])
-     {
+     if(Image_opt.files && Image_opt.files[0]){
       this.Doc_optional = Image_opt.files[0];
       this.ImageFile_optional = this.Doc_optional
-    } 
+      } 
       const formData: FormData = new FormData();
       // name,winningId,mobileNo,age,gender,city,pincode,preferred_content,file
       console.log(this.selectedNewspaper[0].fullName)
@@ -170,15 +193,12 @@ export class Toiform1Component implements OnInit {
       formData.append('doc_1', this.ImageFile, this.ImageFile.name);
       try {formData.append('doc_2', this.ImageFile_optional, this.ImageFile_optional.name );}
       catch { formData.append('doc_2', '' );}
-      
-     
-    
-     this.data.SearchData(formData).subscribe(result => {
-       if(result)
-       {
-       let res = result
+      this.data.SearchData(formData).subscribe(result => {
+       if(result){
+        let res = result
+        this.buttonData = "Submit"
         this.router.navigate(['/submit']);
-       console.log(res)
+        console.log(res)
        }
      })
 }
