@@ -139,7 +139,7 @@ export class Toiform1Component implements OnInit {
             return
           }
           if(this.listDataRes.status === 404){
-           // this.router.navigate(['/linkExpire']);
+          //  this.router.navigate(['/linkExpire']);
             return
           }
           if(this.listDataRes.status === 200){

@@ -14,6 +14,7 @@ const routes: Routes = [
   { path:'doc', component:DocumentexistsComponent},
   {path:'pageNotFound', component:ErrorpageComponent},
   {path:'linkExpire', component:LinkExpireComponent},
+  {path:'2', component:ToiFormComponent},
   { path: '**', redirectTo: 'pageNotFound' }
 
 ];
