@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DocumentexistsComponent } from './documentexists/documentexists.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { LinkExpireComponent } from './link-expire/link-expire.component';
+import { FbLikeComponent } from './facebook';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,8 @@ import { LinkExpireComponent } from './link-expire/link-expire.component';
     ThankYouComponent,
     DocumentexistsComponent,
     ErrorpageComponent,
-    LinkExpireComponent
+    LinkExpireComponent,
+    FbLikeComponent
   ],
   imports: [
     BrowserModule,

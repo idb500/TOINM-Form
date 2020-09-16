@@ -6,13 +6,17 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class DataService {
-
+  baseUrl = "https://toinm.com/submitfile/"
   constructor(private http: HttpClient) { }
 // name,winningId,mobileNo,age,gender,city,pincode,preferred_content,file
   SearchData(formData):Observable<any[]>{
-    return this.http.post<any[]>('https://toinm.com/submitfile/file.php', formData);
+    return this.http.post<any[]>(`${this.baseUrl}file.php`, formData);
   }
   getListData(list, id):Observable<any[]>{
-    return this.http.post<any[]>('https://toinm.com/submitfile/getdata.php', {list, id});
+    return this.http.post<any[]>(`${this.baseUrl}getdata.php`, {list, id});
+  }
+
+  eventFormData(listid,messageid,question1,city,age,gender,name,question2,mobile,pincode):Observable<any[]>{
+    return this.http.post<any[]>(`${this.baseUrl}formsevent.php`,{listid,messageid,question1,city,age,gender,name,question2,mobile,pincode});
   }
 }

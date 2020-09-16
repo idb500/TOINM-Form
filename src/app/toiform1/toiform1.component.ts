@@ -40,7 +40,7 @@ export class Toiform1Component implements OnInit {
     private router: Router) {
       this.route.queryParams.subscribe(params => {
       this.paramsValue = params;
-      console.log(this.paramsValue)
+     // console.log(this.paramsValue)
       });
      }
 
@@ -130,16 +130,16 @@ export class Toiform1Component implements OnInit {
           console.log(this.listDataRes.status)
           if(this.listDataRes.status === 205){
             // doc
-            this.router.navigate(['/doc']);
+            this.router.navigate(['/duplicate-entry']);
             return
             }
           if(this.listDataRes.status === 204){
             // winner
-            this.router.navigate(['/submit']);
+            this.router.navigate(['/thank-you']);
             return
           }
           if(this.listDataRes.status === 404){
-          //  this.router.navigate(['/linkExpire']);
+            this.router.navigate(['/linkExpire']);
             return
           }
           if(this.listDataRes.status === 200){
@@ -152,7 +152,7 @@ export class Toiform1Component implements OnInit {
           this.contactForm.controls.mobileNumber.setValue(value.phone);
           this.contactForm.controls.pincode.setValue(value.pincode);
         }
-      })
+      });
     }
 
   onSubmit() {
@@ -195,10 +195,10 @@ export class Toiform1Component implements OnInit {
       catch { formData.append('doc_2', '' );}
       this.data.SearchData(formData).subscribe(result => {
        if(result){
-        let res = result
         this.buttonData = "Submit"
-        this.router.navigate(['/submit']);
-        console.log(res)
+        window.location.href = "https://wantmypaper.com/submitted.html";
+       // this.router.navigate(['/thank-you']);
+       // console.log(res)
        }
      })
 }
