@@ -1,0 +1,463 @@
+.leftbar {
+    width: 26%;
+    float: left;
+    background: url(../../assets/leftBg2.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 60px 3.5%;
+    text-align: center;
+}
+
+.prizeBox {
+    width: 100%;
+    float: left;
+    margin: 15px 0;
+    background: #68309214;
+    border: 2px solid #683092;
+    border-radius: 28px;
+    padding: 35px;
+    text-align: center;
+}
+
+.prizeBox strong {
+    display: block;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 80px;
+    color: #683092;
+    line-height: 1.2;
+}
+
+.prizeBox h4 {
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 32px;
+    color: #683092;
+    line-height: 1.2;
+}
+
+.thankyou {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    float: left;
+}
+
+.thankyou .dflex {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.thankyou img {
+    max-width: 180px;
+    display: block;
+    margin: 0 auto;
+}
+
+.thankyou h1 {
+    font-size: 60px;
+    line-height: 1.2;
+    font-weight: 400;
+    text-transform: none;
+    font-family: 'MADETommySoft';
+    padding: 30px 0 20px;
+    color: #e4001b;
+}
+
+.thankyou p {
+    font-size: 15px;
+    line-height: 28px;
+    color: #707070;
+    margin: 0 0 20px;
+}
+
+.thankyou h6 {
+    font-size: 18px;
+    color: #040505;
+    line-height: 28px;
+    margin: 0 0 15px;
+}
+
+.fbLike a {
+    display: inline-block;
+    background: #0969F9;
+    color: #fff;
+    min-width: 200px;
+    height: 48px;
+    line-height: 48px;
+    padding: 0 25px;
+    font-size: 20px;
+    text-align: left;
+}
+
+.fbLike a i {
+    margin-right: 10px;
+    font-size: 30px;
+    position: relative;
+    top: 7px;
+}
+
+.fbLike a img {
+    display: inline-block;
+}
+
+.fbLike a:hover {
+    opacity: 0.8;
+}
+
+
+/* Responsive Start */
+
+@media(min-width:1740px) {
+    .thankyou img {
+        max-width: 220px;
+        display: block;
+        margin: 0 auto;
+    }
+    .thankyou h1 {
+        font-size: 80px;
+        line-height: 1.2;
+        font-weight: 400;
+        text-transform: none;
+        font-family: 'MADETommySoft';
+        padding: 30px 0 20px;
+    }
+    .thankyou p {
+        font-size: 18px;
+        line-height: 34px;
+        color: #707070;
+        margin: 0 0 20px;
+    }
+    .thankyou h6 {
+        font-size: 19px;
+        color: #040505;
+        line-height: 34px;
+        margin: 0 0 10px;
+    }
+}
+
+@media(max-width:1740px) {
+    .footer {
+        font-size: 15px;
+    }
+    .footer .divider {
+        padding: 0 15px;
+    }
+}
+
+@media(max-width:1540px) {
+    .footer {
+        font-size: 14px;
+        line-height: 22px;
+        padding: 10px 3%;
+    }
+    .footer .divider {
+        padding: 0 10px;
+    }
+    .formsection {
+        min-height: 77.7vh;
+    }
+    .radio {
+        font-size: 14px;
+    }
+    h1,
+    h2,
+    .heading {
+        font-size: 26px;
+        line-height: 32px;
+    }
+    .form_group .form_field {
+        font-size: 14px;
+        padding: 7px 0;
+    }
+    .form_group {
+        margin: 20px 0 0;
+    }
+    .radio {
+        margin: 6px 0 0;
+    }
+    .header .magiclogo img {
+        max-width: 80px;
+    }
+    .header .logo img {
+        max-width: 60px;
+    }
+    .prizeBox strong {
+        font-size: 54px;
+        line-height: 1.2;
+    }
+    .prizeBox h4 {
+        font-size: 24px;
+    }
+    .prizeBox {
+        padding: 25px;
+    }
+}
+
+@media(max-width:1200px) {
+    .leftbar {
+        padding: 40px 2%;
+    }
+    .prizeBox .icn img {
+        max-width: 70px;
+    }
+    .prizeBox strong {
+        font-size: 44px;
+    }
+    .prizeBox h4 {
+        font-size: 22px;
+    }
+    .prizeBox {
+        padding: 20px;
+        border-radius: 20px;
+    }
+    .formsection {
+        padding: 40px 3%;
+    }
+    .radio {
+        width: 25%;
+    }
+    .form_group {
+        margin: 15px 0 0;
+    }
+    .header .logo img {
+        max-width: 55px;
+    }
+    .header .magiclogo img {
+        max-width: 75px;
+    }
+    .footer .left {
+        width: 100%;
+        text-align: center;
+    }
+    .footer .right {
+        width: 100%;
+        text-align: center;
+        padding: 3px 0 0;
+    }
+    .footer .divider {
+        padding: 0 6px;
+    }
+    .uploadDiv .col8 {
+        width: 70%;
+        padding-right: 3%;
+    }
+    .fileBtn label {
+        width: 200px;
+    }
+    .uploadDiv,
+    .uploadDiv .checkbox label {
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .uploadDiv .checkbox {
+        margin: 0;
+    }
+    .thankyou img {
+        max-width: 150px;
+    }
+    .thankyou h1 {
+        font-size: 50px;
+        padding: 22px 0 15px;
+    }
+    .thankyou p {
+        line-height: 24px;
+        margin: 0 0 15px;
+    }
+    .thankyou h6 {
+        font-size: 16px;
+    }
+    .fbLike a {
+        min-width: 160px;
+        height: 44px;
+        line-height: 44px;
+        padding: 0 20px;
+        font-size: 18px;
+    }
+}
+
+@media(max-width:979px) {
+    .fullSection {
+        display: block;
+    }
+    .leftbar {
+        width: 100%;
+        padding: 40px 10%;
+    }
+    .prizeBox .icn img {
+        max-width: 85px;
+        max-height: 70px;
+    }
+    .prizeBox {
+        width: 46%;
+        float: left;
+        margin: 0 2%;
+    }
+    .formsection {
+        width: 100%;
+    }
+}
+
+@media(max-width:767px) {
+    .header .magiclogo img {
+        max-width: 65px;
+    }
+    .header .logo img {
+        max-width: 45px;
+    }
+    .header {
+        padding: 0 0 2px;
+    }
+    .leftbar {
+        padding: 30px 3%;
+    }
+    .prizeBox .icn img {
+        max-width: 75px;
+        max-height: 58px;
+    }
+    .prizeBox h4 {
+        font-size: 20px;
+    }
+    .prizeBox strong {
+        font-size: 38px;
+    }
+    .prizeBox {
+        padding: 15px;
+        border-radius: 14px;
+    }
+    .formsection {
+        padding: 35px 4%;
+        overflow: hidden;
+    }
+    h1,
+    h2,
+    .heading {
+        font-size: 22px;
+        line-height: 28px;
+    }
+    .form_group {
+        width: 100%;
+        padding: 0;
+    }
+    .form {
+        width: 100%;
+        margin: 0;
+    }
+    .form_group .form_field {
+        padding: 5px 0;
+    }
+    .radio {
+        width: 50%;
+    }
+    .btn {
+        min-width: 160px;
+        height: 48px;
+    }
+    .footer {
+        line-height: 20px;
+    }
+    .footer .right,
+    .footer .left {
+        padding: 5px 0;
+    }
+    .form_group select.form_field {
+        background-size: 12px;
+    }
+    .uploadDiv {
+        display: block;
+        width: 100%;
+        float: left;
+        padding: 15px 0;
+    }
+    .uploadDiv .col8 {
+        width: 100%;
+        float: left;
+        padding: 0 0 10px;
+    }
+    .uploadDiv .col4 {
+        width: 100%;
+        float: left;
+    }
+    .fileBtn label::before {
+        width: 12px;
+        height: 16px;
+    }
+    .thankyou h1 {
+        font-size: 40px;
+        padding: 20px 0 15px;
+    }
+    .thankyou img {
+        max-width: 110px;
+    }
+}
+
+@media(max-width:479px) {
+    .leftbar {
+        padding: 30px 2%;
+    }
+    .prizeBox strong {
+        font-size: 32px;
+        padding: 3px 0;
+    }
+    .prizeBox h4 {
+        font-size: 14px;
+    }
+    .prizeBox .icn img {
+        max-width: 70px;
+        max-height: 52px;
+    }
+    .footer {
+        font-size: 12px;
+        line-height: 16px;
+    }
+    h1,
+    h2,
+    .heading {
+        font-size: 20px;
+        line-height: 26px;
+    }
+    .radio {
+        font-size: 13px;
+    }
+    .form_group .label {
+        line-height: 20px;
+        font-size: 13px;
+    }
+    .form_group .btn {
+        margin-top: 10px;
+    }
+    .thankyou img {
+        max-width: 90px;
+    }
+    .thankyou h1 {
+        font-size: 35px;
+        padding: 16px 0 12px;
+    }
+    .thankyou h6 {
+        font-size: 15px;
+        line-height: 22px;
+    }
+    .fbLike a {
+        min-width: 135px;
+        height: 42px;
+        line-height: 42px;
+        padding: 0 16px;
+        font-size: 16px;
+    }
+    .fbLike a i {
+        margin-right: 7px;
+        font-size: 26px;
+        position: relative;
+        top: 3px;
+    }
+}
+
+
+/* Responsive End */

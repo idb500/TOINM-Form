@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="formsection white">
-        <h1 class="heading">GUESS THE BUMPER PRIZE</h1>
+        <h1 class="heading">JUST FILL IN THE DETAILS BELOW AND YOU ARE GOOD TO GO</h1>
         <div class="form">
             <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
                 <div class="form_row">
@@ -94,7 +94,7 @@
                     <div class="form_group w100">
                         <label class="label bold">Your Answer</label>
                         <input type="text" class="form_field" formControlName='Opinion'>
-                        
+
                     </div>
                 </div>
                 <div class="form_row">
@@ -105,37 +105,39 @@
                             </div>
                             <div class="col4">
                                 <div class="fileBtn">
-                                    <input   type="file" accept="all/*" #Doc_proof formControlName="Doc_proof" (change)="onFileSelect(Doc_proof)" [ngClass]="{ 'is-invalid': submitted && f.Doc_proof.errors }">
+                                    <input type="file" accept="all/*" #Doc_proof formControlName="Doc_proof" (change)="onFileSelect(Doc_proof)" [ngClass]="{ 'is-invalid': submitted && f.Doc_proof.errors }">
                                     <label for="file1">Choose File and upload</label>
                                     <div *ngIf="submitted && f.Doc_proof.errors" class="invalid-feedback">
                                         <div class="error" *ngIf="f.Doc_proof.errors.required">document is required</div>
                                     </div>
                                 </div>
+                                <span class="fileNme">{{fileInfo}}</span>
                             </div>
-                            <span>{{fileInfo}}</span>
+
                         </div>
                         <div class="uploadDiv">
                             <div class="col8">
                                 <div class="radio">
-                                    <input type="checkbox" id="selfie"  (change)="toggleVisibility($event)">
+                                    <input type="checkbox" id="selfie" (change)="toggleVisibility($event)">
                                     <label for="selfie">Click a Selfie with Todays Newspaper and nominate yourself for the Bumper Prize.</label>
                                 </div>
                             </div>
                             <div class="col4">
-                                        <!-- class="fileBtn1" -->
-                                <div id="toglclass" [ngClass] = "{'fileBtn1':!marked , 'fileBtn':marked }">
+                                <!-- class="fileBtn1" -->
+                                <div id="toglclass" [ngClass]="{'fileBtn1':!marked , 'fileBtn':marked }">
                                     <label for="file1">Choose File and upload</label>
-                                    <input   type="file" accept="all/*" (change)="onFileSelect1(Doc_proof_opt)" #Doc_proof_opt formControlName="Doc_proof_opt">
+                                    <input type="file" accept="all/*" (change)="onFileSelect1(Doc_proof_opt)" #Doc_proof_opt formControlName="Doc_proof_opt">
                                 </div>
+                                <span class="fileNme">{{fileInfo1}}</span>
                             </div>
-                            <span>{{fileInfo1}}</span>
+
                         </div>
                     </div>
                 </div>
                 <div class="form_row submit">
                     <div class="form_group w100">
                         <!-- class="btn"   ng-class="{'btn': contactForm.valid , 'btn': !contactForm.valid}"-->
-                        <button [ngClass] = "{'btn': !contactForm.invalid, 'btn1': contactForm.invalid}"  [disabled] = 'contactForm.invalid'>{{buttonData}}</button>
+                        <button [ngClass]="{'btn': !contactForm.invalid, 'btn1': contactForm.invalid}" [disabled]='contactForm.invalid'>{{buttonData}}</button>
                     </div>
                 </div>
             </form>

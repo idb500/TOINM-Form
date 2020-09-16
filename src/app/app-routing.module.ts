@@ -8,14 +8,13 @@ import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { LinkExpireComponent } from './link-expire/link-expire.component';
 
 const routes: Routes = [
-  // {path: '1', component:ToiFormComponent},
+   {path: 'Event', component:ToiFormComponent},
   {path: '', component:Toiform1Component},
-  {path:'submit', component:ThankYouComponent},
-  { path:'doc', component:DocumentexistsComponent},
-  {path:'pageNotFound', component:ErrorpageComponent},
+  {path:'thank-you', component:ThankYouComponent},
+  { path:'duplicate-entry', component:DocumentexistsComponent},
+  {path:'404', component:ErrorpageComponent},
   {path:'linkExpire', component:LinkExpireComponent},
-  {path:'2', component:ToiFormComponent},
-  { path: '**', redirectTo: 'pageNotFound' }
+  { path: '**', redirectTo: '404' }
 
 ];
 
