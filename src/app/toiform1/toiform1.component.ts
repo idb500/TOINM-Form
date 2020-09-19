@@ -1,4 +1,4 @@
-// https://stackblitz.com/edit/angular-file-upload-button?file=src%2Fapp%2Ffile-upload-button%2Ffile-upload-button.component.ts
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators,FormControl } from  '@angular/forms';
 import { DataService } from '../data.service';
@@ -50,6 +50,21 @@ export class Toiform1Component implements OnInit {
     
     
   }
+  createContactForm(){
+    this.contactForm = this.formBuilder.group({
+      mobileNumber: [{ value: '', disabled: true }],
+      fullName:['',Validators.required],
+      pincode: [{value:'',disabled: true}],
+      Gender: ['',Validators.required],
+      Age: ['',Validators.required],
+      City: ['',Validators.required],
+      NewsType: ['',],
+      Opinion: [''],
+      Doc_proof: ['',Validators.required],
+      Doc_proof_opt: [{value:'',disabled: true}]
+    });
+      }
+
   onFileSelect(input: HTMLInputElement): void {
     this.fileInfo = ''
    
@@ -90,21 +105,7 @@ export class Toiform1Component implements OnInit {
     catch {}
   //   console.log(this.fileInfo1)
   }
-    createContactForm(){
-    this.contactForm = this.formBuilder.group({
-      mobileNumber: [{ value: '', disabled: true }],
-      fullName:['',Validators.required],
-      pincode: [{value:'',disabled: true}],
-      Gender: ['',Validators.required],
-      Age: ['',Validators.required],
-      City: ['',Validators.required],
-      NewsType: ['',],
-      Opinion: [''],
-      Doc_proof: ['',Validators.required],
-      Doc_proof_opt: [{value:'',disabled: true}]
-    });
-      }
-   
+  
      onCheckBoxChanges(e: HTMLInputElement, id: number) {
       const index = this.NewsOptions.findIndex(_ => _.id === id);
       if (!(index > -1)) return;
