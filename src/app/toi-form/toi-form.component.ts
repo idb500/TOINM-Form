@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../data.service';
 
 
@@ -17,7 +18,7 @@ export class ToiFormComponent implements OnInit {
   paperType1:any = [];
   marked:boolean = false;
   NewsOptions: any =  [{paperType: 'Business',checked:false, id: 1}, {paperType:'Sports',checked:false, id: 2}, {paperType:'City',checked:false, id: 3},{paperType:'Nation',checked:false, id: 4},{paperType:'Politics',checked:false, id: 5},{paperType:'International',checked:false, id: 6},{paperType:'Opinion',checked:false, id: 7},{paperType:'Times Life',checked:false, id: 8},{paperType:'Education Times',checked:false, id: 9},{paperType:"I don't read TOI",checked:false, id: 10}]
-  constructor(private formBuilder: FormBuilder,private data:DataService) { }
+  constructor(private formBuilder: FormBuilder,private data:DataService) {}
 
   ngOnInit() {
     this.createContactForm()
@@ -62,7 +63,7 @@ export class ToiFormComponent implements OnInit {
       this.paperType1.push(data.paperType)
     }
 
-    this.data.eventFormData('181','7311648697',this.paperType1.join(','),this.selectedNewspaper[0].City,this.selectedNewspaper[0].Age,
+    this.data.eventFormData('','',this.paperType1.join(','),this.selectedNewspaper[0].City,this.selectedNewspaper[0].Age,
     this.selectedNewspaper[0].Gender,this.selectedNewspaper[0].fullName,this.selectedNewspaper[0].Opinion,
      this.selectedNewspaper[0].mobileNumber,this.selectedNewspaper[0].pincode
     ).subscribe(data =>{})
