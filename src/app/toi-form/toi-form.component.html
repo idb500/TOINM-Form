@@ -30,8 +30,9 @@
                         <label class="label">Full Name *</label>
                         <input type="text" class="form_field" formControlName="fullName">
                         <div *ngIf="f.fullName.errors && f.fullName.touched" class="invalid-feedback">
-                            <div class="error" *ngIf="f.fullName.errors.required">Field is required</div>
+                            <div class="error">{{getErrorName()}}</div>
                         </div>
+                        
                     </div>
                     <div class="form_group">
                         <label class="label">Mobile No *</label>
@@ -58,21 +59,21 @@
                             <option *ngFor="let gender of gender" [ngValue]=gender>{{gender}}</option>
                         </select>
                         <div *ngIf="f.Gender.errors && f.Gender.touched" class="invalid-feedback">
-                            <div class="error" *ngIf="f.Gender.errors.required">Gender is required</div>
+                            <div class="error" *ngIf="f.Gender.errors.required">Field is required</div>
                         </div>
                     </div>
                     <div class="form_group">
                         <label class="label">Age *</label>
                         <input type="number" class="form_field" formControlName="Age">
-                        <div *ngIf=" f.Age.invalid && f.Age.touched" class="invalid-feedback">
-                            <div class="error" *ngIf="f.Age.errors.required">Field is required</div>
+                        <div *ngIf="f.Age.errors && f.Age.touched" class="invalid-feedback">
+                            <div class="error">{{getErrorAge()}}</div>
                         </div>
                     </div>
                     <div class="form_group">
                         <label class="label">City *</label>
-                        <input type="text" class="form_field" placeholder="Enter City" formControlName="City" [ngClass]="{ 'is-invalid': submitted && f.City.errors }">
-                        <div *ngIf="f.City.errors && f.City.touched" class="invalid-feedback">
-                            <div class="error" *ngIf="f.City.errors.required">Field is required</div>
+                        <input type="text" class="form_field" placeholder="Enter City" formControlName="City">
+                        <div *ngIf="contactForm.controls['City'].invalid && f.City.touched" class="invalid-feedback">
+                            <div class="error">{{ getErrorCity()}}</div>
                         </div>
                     </div>
                 </div>
@@ -98,9 +99,10 @@
                 <div class="form_row submit">
                     <div class="form_group w100">
                         <!-- class="btn"   ng-class="{'btn': contactForm.valid , 'btn': !contactForm.valid}"-->
-                        <button [ngClass]="{'btn': !contactForm.invalid, 'btn1': contactForm.invalid}" [disabled]='contactForm.invalid' >{{buttonData}}</button>
+                        <button  [ngClass]="{'btn': !contactForm.invalid, 'btn1': contactForm.invalid}" [disabled]='contactForm.invalid' >{{buttonData}}</button>
                     </div>
                 </div>
+              
             </form>
         </div>
     </div>

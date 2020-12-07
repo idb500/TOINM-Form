@@ -16,7 +16,10 @@ export class DataService {
     return this.http.post<any[]>(`${this.baseUrl}getdata.php`, {list, id});
   }
 
-  eventFormData(question1,city,age,gender,name,question2,mobile,pincode):Observable<any[]>{
-    return this.http.post<any[]>(`${this.baseUrl}formsevent.php`,{question1,city,age,gender,name,question2,mobile,pincode});
+  // eventFormData(question1,city,age,gender,name,question2,mobile,pincode):Observable<any[]>{
+  //   return this.http.post<any[]>(`${this.baseUrl}formsevent.php`,{question1,city,age,gender,name,question2,mobile,pincode});
+  // }
+  eventFormData(data):Observable<any[]>{
+    return this.http.post<any[]>(`${this.baseUrl}formsevent.php`,data);
   }
 }

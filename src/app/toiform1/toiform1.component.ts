@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators,FormControl } from  '@angular/forms';
 import { DataService } from '../data.service';
 import { Routes, RouterModule, Router, ActivatedRoute } from "@angular/router";
+import { DeviceDetectorService } from 'ngx-device-detector';
 @Component({
   selector: 'app-toiform1',
   templateUrl: './toiform1.component.html',
@@ -34,10 +35,11 @@ export class Toiform1Component implements OnInit {
   styleObject
   // file name
   fileInfo1: string;
-  fileInfo: string;
+  fileInfo: string;device_type:any='';
 
   constructor(private formBuilder: FormBuilder,private data:DataService,private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,private deviceService: DeviceDetectorService) {
+      this.getDeviceInfo()
       this.route.queryParams.subscribe(params => {
       this.paramsValue = params;
      // console.log(this.paramsValue)
@@ -50,6 +52,15 @@ export class Toiform1Component implements OnInit {
     
     
   }
+  getDeviceInfo(){
+    let info = this.deviceService.getDeviceInfo();
+    if(info){
+      if(this.deviceService.isMobile()){this.device_type='Mobile'}
+      else if(this.deviceService.isTablet()){this.device_type='Tablet'}
+      else if(this.deviceService.isDesktop()){this.device_type='Desktop'}       
+           
+    }
+  }
   createContactForm(){
     this.contactForm = this.formBuilder.group({
       mobileNumber: [{ value: '', disabled: true }],
@@ -59,7 +70,7 @@ export class Toiform1Component implements OnInit {
       Age: ['',Validators.required],
       City: ['',Validators.required],
       NewsType: ['',],
-      Opinion: [''],
+      Opinion: ['',Validators.required],
       Doc_proof: ['',Validators.required],
       Doc_proof_opt: [{value:'',disabled: true}]
     });
@@ -128,7 +139,7 @@ export class Toiform1Component implements OnInit {
       this.data.getListData(this.list, this.id).subscribe(res =>
         {
           this.listDataRes = res;
-          console.log(this.listDataRes.status)
+         // console.log(this.listDataRes.status)
           if(this.listDataRes.status === 205){
             // doc
             this.router.navigate(['/duplicate-entry']);
@@ -192,13 +203,19 @@ export class Toiform1Component implements OnInit {
       formData.append('question1', this.paperType1.join(','));
       formData.append('question2', this.selectedNewspaper[0].Opinion);
       formData.append('doc_1', this.ImageFile, this.ImageFile.name);
+      formData.append('browser_info', this.deviceService.browser );
+      formData.append('device_info',this.device_type );
+      formData.append('location', '');
+      formData.append('os_type', this.deviceService.os);
+
+
       try {formData.append('doc_2', this.ImageFile_optional, this.ImageFile_optional.name );}
-      catch { formData.append('doc_2', '' );}
+      catch { formData.append('doc_2', '');}
       this.data.SearchData(formData).subscribe(result => {
        if(result){
         this.buttonData = "Submit"
-        window.location.href = "https://wantmypaper.com/submitted.html";
-       // this.router.navigate(['/thank-you']);
+     //   window.location.href = "https://wantmypaper.com/submitted.html";
+        this.router.navigate(['/thank-you']);
        // console.log(res)
        }
      })

@@ -40,7 +40,7 @@ export class Toiform1Component implements OnInit {
     private router: Router) {
       this.route.queryParams.subscribe(params => {
       this.paramsValue = params;
-      console.log(this.paramsValue)
+    //  console.log(this.paramsValue)
       });
      }
 

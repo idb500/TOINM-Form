@@ -12,6 +12,8 @@ import { DocumentexistsComponent } from './documentexists/documentexists.compone
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { LinkExpireComponent } from './link-expire/link-expire.component';
 import { FbLikeComponent } from './facebook';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTooltipModule} from '@angular/material/tooltip';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +31,8 @@ import { FbLikeComponent } from './facebook';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

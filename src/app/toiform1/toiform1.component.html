@@ -92,8 +92,8 @@
                 </div>
                 <div class="form_row">
                     <div class="form_group w100">
-                        <label class="label bold">Your Answer</label>
-                        <input type="text" class="form_field" formControlName='Opinion'>
+                        <label class="label bold">Whats makes you read TOI? *</label>
+                        <input type="text" class="form_field" formControlName='Opinion' [ngClass]="{ 'is-invalid': submitted && f.Opinion.errors }">
 
                     </div>
                 </div>
@@ -101,7 +101,8 @@
                     <div class="form_group w100 uploadFiles">
                         <div class="uploadDiv">
                             <div class="col8">
-                                <p>Upload Winning Proof for Vehicle Registration no: Please submit any document which has your vehicle number on it. Example – picture of your number plate, etc.</p>
+                                <!-- <p>Upload Winning Proof for Vehicle Registration no: Please submit any document which has your vehicle number on it. Example – picture of your number plate, etc.</p> -->
+                                <p>Upload Winning Proof for Mobile Number: Please submit any document which has your mobile number on it. Example – picture of any bills, aadhar card, etc.</p>
                             </div>
                             <div class="col4">
                                 <div class="fileBtn">
