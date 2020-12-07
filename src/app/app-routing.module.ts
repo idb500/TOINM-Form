@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ToiFormComponent } from './toi-form/toi-form.component';
-import { Toiform1Component } from './toiform1/toiform1.component';
+
 import { ThankYouComponent } from './thank-you/thank-you.component';
 import { DocumentexistsComponent } from './documentexists/documentexists.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { LinkExpireComponent } from './link-expire/link-expire.component';
+import { Toiform1Component } from './number-magic/toiform1.component';
 
 const routes: Routes = [
   {path: '', component:Toiform1Component},
