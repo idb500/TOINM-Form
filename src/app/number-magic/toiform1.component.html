@@ -26,21 +26,24 @@
                 <div class="form_row">
                     <div class="form_group">
                         <label class="label">Full Name *</label>
-                        <input type="text" class="form_field" formControlName="fullName" [ngClass]="{ 'is-invalid': submitted && f.fullName.errors }">
+                        <input type="text" class="form_field" formControlName="fullName"
+                            [ngClass]="{ 'is-invalid': submitted && f.fullName.errors }">
                         <div *ngIf="submitted && f.fullName.errors" class="invalid-feedback">
                             <div class="error" *ngIf="f.fullName.errors.required">Full Name is required</div>
                         </div>
                     </div>
                     <div class="form_group">
                         <label class="label">Mobile No *</label>
-                        <input type="number" class="form_field" formControlName="mobileNumber" [ngClass]="{ 'is-invalid': submitted && f.mobileNumber.errors }">
+                        <input type="number" class="form_field" formControlName="mobileNumber"
+                            [ngClass]="{ 'is-invalid': submitted && f.mobileNumber.errors }">
                         <div *ngIf="submitted && f.mobileNumber.errors" class="invalid-feedback">
                             <div class="error" *ngIf="f.mobileNumber.errors.required">Mobile Number is required</div>
                         </div>
                     </div>
                     <div class="form_group">
                         <label class="label">Pin Code *</label>
-                        <input type="number" class="form_field" formControlName="pincode" [ngClass]="{ 'is-invalid': submitted && f.pincode.errors }">
+                        <input type="number" class="form_field" formControlName="pincode"
+                            [ngClass]="{ 'is-invalid': submitted && f.pincode.errors }">
                         <div *ngIf="submitted && f.pincode.errors" class="invalid-feedback">
                             <div class="error" *ngIf="f.pincode.errors.required">Pincode is required</div>
                         </div>
@@ -49,17 +52,19 @@
                 <div class="form_row">
                     <div class="form_group">
                         <label class="label">Gender *</label>
-                        <select class="form_field" formControlName="Gender" [ngClass]="{ 'is-invalid': submitted && f.Gender.errors }">
-              <option disabled value="">Select Gender</option>
-              <option *ngFor="let gender of gender" [ngValue]=gender>{{gender}}</option>
-            </select>
+                        <select class="form_field" formControlName="Gender"
+                            [ngClass]="{ 'is-invalid': submitted && f.Gender.errors }">
+                            <option disabled value="">Select Gender</option>
+                            <option *ngFor="let gender of gender" [ngValue]=gender>{{gender}}</option>
+                        </select>
                         <div *ngIf="submitted && f.Gender.errors" class="invalid-feedback">
                             <div class="error" *ngIf="f.Gender.errors.required">Gender is required</div>
                         </div>
                     </div>
                     <div class="form_group">
                         <label class="label">Age *</label>
-                        <input type="number" class="form_field" formControlName="Age" [ngClass]="{ 'is-invalid': submitted && f.Age.errors }">
+                        <input type="number" class="form_field" formControlName="Age"
+                            [ngClass]="{ 'is-invalid': submitted && f.Age.errors }">
                         <!-- <select class="form_field" formControlName="Age" [ngClass]="{ 'is-invalid': submitted && f.Age.errors }">
               <option disabled value="">Select Age</option>
               <option *ngFor="let age of ageSelection" [ngValue]=age>{{age}}</option>
@@ -70,7 +75,8 @@
                     </div>
                     <div class="form_group">
                         <label class="label">City *</label>
-                        <input type="text" class="form_field" placeholder="Enter City" formControlName="City" [ngClass]="{ 'is-invalid': submitted && f.City.errors }">
+                        <input type="text" class="form_field" placeholder="Enter City" formControlName="City"
+                            [ngClass]="{ 'is-invalid': submitted && f.City.errors }">
                         <div *ngIf="submitted && f.City.errors" class="invalid-feedback">
                             <div class="error" *ngIf="f.City.errors.required">City is required</div>
                         </div>
@@ -78,10 +84,14 @@
                 </div>
                 <div class="form_row">
                     <div class="form_group w100">
-                        <label class="label bold">Which is your preferred content in The Times of India ? (optional)</label>
+                        <label class="label bold">Which is your preferred content in The Times of India ?
+                            (optional)</label>
                         <div class="radioBtns">
-                            <div class="custom-control custom-radio radio" *ngFor="let newoption of NewsOptions; let i = index;">
-                                <input type="checkbox" #el (change)="onCheckBoxChanges(el, newoption.id)" class="custom-control-input" [checked]="newoption.checked" formControlName="NewsType">
+                            <div class="custom-control custom-radio radio"
+                                *ngFor="let newoption of NewsOptions; let i = index;">
+                                <input type="checkbox" #el (change)="onCheckBoxChanges(el, newoption.id)"
+                                    class="custom-control-input" [checked]="newoption.checked"
+                                    formControlName="NewsType">
                                 <label class="custom-control-label">{{newoption.paperType}}</label>
                             </div>
                         </div>
@@ -91,7 +101,8 @@
                 <div class="form_row">
                     <div class="form_group w100">
                         <label class="label bold">Whats makes you read TOI? *</label>
-                        <input type="text" class="form_field" formControlName='Opinion' [ngClass]="{ 'is-invalid': submitted && f.Opinion.errors }">
+                        <input type="text" class="form_field" formControlName='Opinion'
+                            [ngClass]="{ 'is-invalid': submitted && f.Opinion.errors }">
 
                     </div>
                 </div>
@@ -100,14 +111,19 @@
                         <div class="uploadDiv">
                             <div class="col8">
                                 <!-- <p>Upload Winning Proof for Vehicle Registration no: Please submit any document which has your vehicle number on it. Example – picture of your number plate, etc.</p> -->
-                                <p>Upload Winning Proof for Mobile Number: Please submit any document which has your mobile number on it. Example – picture of any bills, aadhar card, etc.</p>
+                                <p>Upload Winning Proof for Mobile Number: Please submit any document which has your
+                                    mobile number on it. Example – Mobile postpaid bills, Top-up screenshot for pre-paid
+                                    bills, Screenshot of mobile apps etc. (Max Size 5MB)</p>
                             </div>
                             <div class="col4">
                                 <div class="fileBtn">
-                                    <input type="file" accept="all/*" #Doc_proof formControlName="Doc_proof" (change)="onFileSelect(Doc_proof)" [ngClass]="{ 'is-invalid': submitted && f.Doc_proof.errors }">
-                                    <label for="file1">Choose File and upload</label>
+                                    <input type="file" accept="all/*" #Doc_proof formControlName="Doc_proof"
+                                        (change)="onFileSelect(Doc_proof)"
+                                        [ngClass]="{ 'is-invalid': submitted && f.Doc_proof.errors }">
+                                    <label for="file1">Choose file and upload</label>
                                     <div *ngIf="submitted && f.Doc_proof.errors" class="invalid-feedback">
-                                        <div class="error" *ngIf="f.Doc_proof.errors.required">document is required</div>
+                                        <div class="error" *ngIf="f.Doc_proof.errors.required">document is required
+                                        </div>
                                     </div>
                                 </div>
                                 <span class="fileNme">{{fileInfo}}</span>
@@ -118,14 +134,16 @@
                             <div class="col8">
                                 <div class="radio">
                                     <input type="checkbox" id="selfie" (change)="toggleVisibility($event)">
-                                    <label for="selfie">Click a Selfie with Todays Newspaper and nominate yourself for the Bumper Prize.</label>
+                                    <label for="selfie">Click a Selfie with Todays Newspaper and nominate yourself for
+                                        the Weekly Prize. (Max Size 5MB)</label>
                                 </div>
                             </div>
                             <div class="col4">
                                 <!-- class="fileBtn1" -->
                                 <div id="toglclass" [ngClass]="{'fileBtn1':!marked , 'fileBtn':marked }">
-                                    <label for="file1">Choose File and upload</label>
-                                    <input type="file" accept="all/*" (change)="onFileSelect1(Doc_proof_opt)" #Doc_proof_opt formControlName="Doc_proof_opt">
+                                    <label for="file1">Choose file and upload</label>
+                                    <input type="file" accept="all/*" (change)="onFileSelect1(Doc_proof_opt)"
+                                        #Doc_proof_opt formControlName="Doc_proof_opt">
                                 </div>
                                 <span class="fileNme">{{fileInfo1}}</span>
                             </div>
@@ -136,7 +154,8 @@
                 <div class="form_row submit">
                     <div class="form_group w100">
                         <!-- class="btn"   ng-class="{'btn': contactForm.valid , 'btn': !contactForm.valid}"-->
-                        <button [ngClass]="{'btn': !contactForm.invalid, 'btn1': contactForm.invalid}" [disabled]='contactForm.invalid'>{{buttonData}}</button>
+                        <button [ngClass]="{'btn': !contactForm.invalid, 'btn1': contactForm.invalid}"
+                            [disabled]='contactForm.invalid'>{{buttonData}}</button>
                     </div>
                 </div>
             </form>
@@ -148,7 +167,9 @@
 
 <!-- Footer Section -- Start -->
 <footer class="footer">
-    <p class="left"> <a href="#">Terms & Conditions</a> <span class="divider">|</span> For any queries, write to us at <a href="mailto:support@toinm.com">support@toinm.com</a> or call us at <a href="tel:+91-8448709561">+91-8448709561</a> (10AM To 7PM)</p>
+    <p class="left"> <a href="#">Terms & Conditions</a> <span class="divider">|</span> For any queries, write to us at
+        <a href="mailto:support@toinm.com">support@toinm.com</a> or call us at <a
+            href="tel:+91-8448709561">+91-8448709561</a> (10AM To 7PM)</p>
     <p class="right">©2020 All Rights Reserved @ Bennett Coleman and Company Limited.</p>
 </footer>
 <!-- Footer Section -- End -->
