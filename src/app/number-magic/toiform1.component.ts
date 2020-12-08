@@ -92,7 +92,12 @@ export class Toiform1Component implements OnInit {
     try
     {
     const file = input.files[0];
-    this.fileInfo = `${file.name} (${formatBytes(file.size)})`;
+    if(Number(file.size) >= Number(5254872)){
+      this.fileInfo = "File size has exceeded";
+    }
+    else{
+      this.fileInfo = `${file.name} (${formatBytes(file.size)})`;
+    }
     }
   catch { }
   //  console.log(this.fileInfo)
@@ -111,7 +116,12 @@ export class Toiform1Component implements OnInit {
     }
     try {
     const file = input.files[0];
-    this.fileInfo1 = `${file.name} (${formatBytes(file.size)})`;
+    if(Number(file.size) >= Number(5254872)){
+      this.fileInfo1 = "File size has exceeded";
+    }
+    else{
+      this.fileInfo1 = `${file.name} (${formatBytes(file.size)})`;
+    }
     }
     catch {}
   //   console.log(this.fileInfo1)

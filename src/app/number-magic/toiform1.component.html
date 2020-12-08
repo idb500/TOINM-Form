@@ -110,7 +110,7 @@
                                         <div class="error" *ngIf="f.Doc_proof.errors.required">document is required</div>
                                     </div>
                                 </div>
-                                <span class="fileNme">{{fileInfo}}</span>
+                                <span class="fileNme" [ngClass]="{'redColor': fileInfo === 'File size has exceeded'}">{{fileInfo}}</span>
                             </div>
 
                         </div>
@@ -127,7 +127,7 @@
                                     <label for="file1">Choose File and upload</label>
                                     <input type="file" accept="all/*" (change)="onFileSelect1(Doc_proof_opt)" #Doc_proof_opt formControlName="Doc_proof_opt">
                                 </div>
-                                <span class="fileNme">{{fileInfo1}}</span>
+                                <span class="fileNme" [ngClass]="{'redColor': fileInfo1 === 'File size has exceeded'}">{{fileInfo1}}</span>
                             </div>
 
                         </div>
