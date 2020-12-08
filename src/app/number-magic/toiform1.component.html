@@ -100,7 +100,7 @@
                         <div class="uploadDiv">
                             <div class="col8">
                                 <!-- <p>Upload Winning Proof for Vehicle Registration no: Please submit any document which has your vehicle number on it. Example – picture of your number plate, etc.</p> -->
-                                <p>Upload Winning Proof for Mobile Number: Please submit any document which has your mobile number on it. Example – picture of any bills, aadhar card, etc.</p>
+                                <p class="font-size-15">Upload Winning Proof as per the number grid theme. Example: For Mobile Number Theme - Mobile postpaid bills, Top-up screenshot for pre-paid bills, Screenshot of mobile apps etc | For Birthday Date Theme - Driving License, Voter Id, Passport, Pan Card, Aadhar Card etc | For Newspaper Page Number Theme- Screenshot of specific page as per contest question (Max Size 5MB)</p>
                             </div>
                             <div class="col4">
                                 <div class="fileBtn">
@@ -110,7 +110,7 @@
                                         <div class="error" *ngIf="f.Doc_proof.errors.required">document is required</div>
                                     </div>
                                 </div>
-                                <span class="fileNme">{{fileInfo}}</span>
+                                <span class="fileNme" [ngClass]="{'redColor': fileInfo === 'File size has exceeded'}">{{fileInfo}}</span>
                             </div>
 
                         </div>
@@ -118,7 +118,7 @@
                             <div class="col8">
                                 <div class="radio">
                                     <input type="checkbox" id="selfie" (change)="toggleVisibility($event)">
-                                    <label for="selfie">Click a Selfie with Todays Newspaper and nominate yourself for the Bumper Prize.</label>
+                                    <label for="selfie">Click a Selfie with Todays Newspaper and nominate yourself for the Weekly Prize. (Max Size 5MB)</label>
                                 </div>
                             </div>
                             <div class="col4">
@@ -127,7 +127,7 @@
                                     <label for="file1">Choose File and upload</label>
                                     <input type="file" accept="all/*" (change)="onFileSelect1(Doc_proof_opt)" #Doc_proof_opt formControlName="Doc_proof_opt">
                                 </div>
-                                <span class="fileNme">{{fileInfo1}}</span>
+                                <span class="fileNme" [ngClass]="{'redColor': fileInfo1 === 'File size has exceeded'}">{{fileInfo1}}</span>
                             </div>
 
                         </div>
