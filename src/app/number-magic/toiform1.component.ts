@@ -93,10 +93,10 @@ export class Toiform1Component implements OnInit {
     {
     const file = input.files[0];
     if(Number(file.size) >= Number(5254872)){
-      this.fileInfo1 = "File size has exceeded";
+      this.fileInfo = "File size has exceeded";
     }
     else{
-      this.fileInfo1 = `${file.name} (${formatBytes(file.size)})`;
+      this.fileInfo = `${file.name} (${formatBytes(file.size)})`;
     }
     }
   catch { }
