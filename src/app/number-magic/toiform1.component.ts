@@ -47,7 +47,7 @@ export class Toiform1Component implements OnInit {
      }
 
   ngOnInit() {
-    this.getListData()
+    // this.getListData()
     this.createContactForm()
     
     
@@ -133,39 +133,39 @@ export class Toiform1Component implements OnInit {
      
     }
 
-    getListData(){
-      this.list = this.paramsValue.list
-      this.id = this.paramsValue.id
-      this.data.getListData(this.list, this.id).subscribe(res =>
-        {
-          this.listDataRes = res;
-         // console.log(this.listDataRes.status)
-          if(this.listDataRes.status === 205){
-            // doc
-            this.router.navigate(['/duplicate-entry']);
-            return
-            }
-          if(this.listDataRes.status === 204){
-            // winner
-            this.router.navigate(['/thank-you']);
-            return
-          }
-          if(this.listDataRes.status === 404){
-            this.router.navigate(['/linkExpire']);
-            return
-          }
-          if(this.listDataRes.status === 200){
-            // data
-          let value = this.listDataRes.data;
-          if(value.city != ''){
-            this.contactForm.controls.City.setValue(value.city)
-            this.contactForm.controls['City'].disable();
-          }
-          this.contactForm.controls.mobileNumber.setValue(value.phone);
-          this.contactForm.controls.pincode.setValue(value.pincode);
-        }
-      });
-    }
+    // getListData(){
+    //   this.list = this.paramsValue.list
+    //   this.id = this.paramsValue.id
+    //   this.data.getListData(this.list, this.id).subscribe(res =>
+    //     {
+    //       this.listDataRes = res;
+    //      // console.log(this.listDataRes.status)
+    //       if(this.listDataRes.status === 205){
+    //         // doc
+    //         this.router.navigate(['/duplicate-entry']);
+    //         return
+    //         }
+    //       if(this.listDataRes.status === 204){
+    //         // winner
+    //         this.router.navigate(['/thank-you']);
+    //         return
+    //       }
+    //       if(this.listDataRes.status === 404){
+    //         this.router.navigate(['/linkExpire']);
+    //         return
+    //       }
+    //       if(this.listDataRes.status === 200){
+    //         // data
+    //       let value = this.listDataRes.data;
+    //       if(value.city != ''){
+    //         this.contactForm.controls.City.setValue(value.city)
+    //         this.contactForm.controls['City'].disable();
+    //       }
+    //       this.contactForm.controls.mobileNumber.setValue(value.phone);
+    //       this.contactForm.controls.pincode.setValue(value.pincode);
+    //     }
+    //   });
+    // }
 
   onSubmit() {
     this.buttonData = "Please wait.."

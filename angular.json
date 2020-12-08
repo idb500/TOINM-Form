@@ -138,5 +138,8 @@
       }
     }
   },
-  "defaultProject": "numberMagic"
+  "defaultProject": "numberMagic",
+  "cli": {
+    "analytics": "80b5a86b-e5f6-44e5-bead-5670befc9e9e"
+  }
 }
