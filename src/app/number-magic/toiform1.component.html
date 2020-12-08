@@ -126,7 +126,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <span class="fileNme">{{fileInfo}}</span>
+                                <span class="fileNme" [ngClass]="{'redColor': fileInfo === 'File size has exceeded'}">{{fileInfo}}</span>
                             </div>
 
                         </div>
@@ -145,7 +145,7 @@
                                     <input type="file" accept="all/*" (change)="onFileSelect1(Doc_proof_opt)"
                                         #Doc_proof_opt formControlName="Doc_proof_opt">
                                 </div>
-                                <span class="fileNme">{{fileInfo1}}</span>
+                                <span class="fileNme" [ngClass]="{'redColor': fileInfo1 === 'File size has exceeded'}">{{fileInfo1}}</span>
                             </div>
 
                         </div>
