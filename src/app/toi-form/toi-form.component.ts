@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { DataService } from '../data.service';
 import { map } from 'rxjs/operators';
+import { Routes, RouterModule, Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-toi-form',
@@ -22,7 +23,7 @@ export class ToiFormComponent implements OnInit {
   device_type:any='';
   
   NewsOptions: any =  [{paperType: 'Business',checked:false, id: 1}, {paperType:'Sports',checked:false, id: 2}, {paperType:'City',checked:false, id: 3},{paperType:'Nation',checked:false, id: 4},{paperType:'Politics',checked:false, id: 5},{paperType:'International',checked:false, id: 6},{paperType:'Opinion',checked:false, id: 7},{paperType:'Times Life',checked:false, id: 8},{paperType:'Education Times',checked:false, id: 9},{paperType:"I don't read TOI",checked:false, id: 10}]
-  constructor(private formBuilder: FormBuilder,private data:DataService,private deviceService: DeviceDetectorService) {
+  constructor(private formBuilder: FormBuilder,private data:DataService,private deviceService: DeviceDetectorService,private router: Router) {
     
    }
 
@@ -142,7 +143,9 @@ export class ToiFormComponent implements OnInit {
     //  this.selectedNewspaper[0].mobileNumber,this.selectedNewspaper[0].pincode
      ).subscribe(data =>{
       if(data){
-       window.location.replace("https://toinm.com/form/thankyou.html");
+        this.router.navigate(['/thank-you']);
+      // window.location.replace("https://toinm.com/form/thankyou.html");
+
     }
   },
   error => {this.buttonData = "Submit"}

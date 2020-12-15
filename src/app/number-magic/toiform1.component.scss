@@ -348,14 +348,14 @@
     padding: 0px 3%;
     text-align: center;
     display: table;
-    height: 100vh;
+    height: 67vh;
     margin-top: -30px;
 }
-.img_wrapper{
-    display: table-cell;
-    height: 100%;
-    vertical-align: middle;
-}
+// .img_wrapper{
+//     display: table-cell;
+//     height: 100%;
+//     vertical-align: middle;
+// }
 .font-size-15{
     font-size: 15px;
 }
@@ -366,22 +366,22 @@
 .prizeBox {
     width: 100%;
     float: left;
-    margin: 10px 0;
-    background: #68309214;
-    border: 2px solid #683092;
-    border-radius: 20px;
+    margin: 345px 0;
+   // background: #68309214;
+    // border: 2px solid #683092;
+   // border-radius: 20px;
     padding: 15px 25px;
     text-align: center;
 }
 
-.prizeBox strong {
-    display: block;
-    text-transform: uppercase;
-    font-weight: 400;
-    font-size: 40px;
-    color: #683092;
-    line-height: 1.2;
-}
+// .prizeBox strong {
+//     display: block;
+//     text-transform: uppercase;
+//     font-weight: 400;
+//     font-size: 40px;
+//     color: #683092;
+//     line-height: 1.2;
+// }
 
 .prizeBox h4 {
     text-transform: uppercase;
@@ -392,7 +392,8 @@
 }
 
 .prizeBox img {
-    max-width: 80px;
+    // max-width: 233px  
+    max-width: 100%; 
 }
 
 .thankyou {
@@ -561,7 +562,7 @@ h2,
 
 @media(max-width:1200px) {
     .leftbar {
-        padding: 30px 2%;
+        padding: 238px 2%;
     }
     .prizeBox .icn img {
         max-width: 60px;
@@ -649,15 +650,16 @@ h2,
         width: 100%;
         padding: 40px 10%;
         display: block;
+        margin-bottom: -109px;
     }
     .prizeBox .icn img {
         max-width: 85px;
         max-height: 70px;
     }
     .prizeBox {
-        width: 46%;
+        width: 68%;
         float: left;
-        margin: 0 2%;
+        margin: 26px 14%;
     }
     .formsection {
         width: 100%;
@@ -757,6 +759,7 @@ h2,
 @media(max-width:479px) {
     .leftbar {
         padding: 30px 2%;
+        margin-bottom: -115px;
     }
     .prizeBox strong {
         font-size: 32px;

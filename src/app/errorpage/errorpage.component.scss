@@ -353,9 +353,9 @@
     width: 100%;
     float: left;
     margin: 10px 0;
-    background: #68309214;
-    border: 2px solid #683092;
-    border-radius: 20px;
+   // background: #68309214;
+  //  border: 2px solid #683092;
+   // border-radius: 20px;
     padding: 15px 25px;
     text-align: center;
 }
@@ -378,7 +378,7 @@
 }
 
 .prizeBox img {
-    max-width: 80px;
+    max-width: 100%;
 }
 
 .thankyou {
@@ -648,7 +648,7 @@ h2,
     .prizeBox {
         width: 46%;
         float: left;
-        margin: 0 2%;
+        margin: 0 27%;
     }
     .formsection {
         width: 100%;
@@ -678,6 +678,7 @@ h2,
     .prizeBox {
         padding: 15px;
         border-radius: 14px;
+        margin-left: 19%;
     }
     .formsection {
         padding: 35px 4%;
@@ -748,6 +749,10 @@ h2,
 @media(max-width:479px) {
     .leftbar {
         padding: 30px 2%;
+    }
+    .prizeBox {
+        width: 62%;
+       
     }
     .prizeBox strong {
         font-size: 32px;

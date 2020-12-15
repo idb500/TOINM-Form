@@ -9,7 +9,7 @@ import { LinkExpireComponent } from './link-expire/link-expire.component';
 import { Toiform1Component } from './number-magic/toiform1.component';
 
 const routes: Routes = [
-  {path: '', component:Toiform1Component},
+   {path: '', component:Toiform1Component},
   {path:'thank-you', component:ThankYouComponent},
   { path:'duplicate-entry', component:DocumentexistsComponent},
   {path:'404', component:ErrorpageComponent},

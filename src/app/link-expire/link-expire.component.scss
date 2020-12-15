@@ -348,14 +348,19 @@
     padding: 40px 3%;
     text-align: center;
 }
+// .img_wrapper{
+//     display: table-cell;
+//     height: 100%;
+//     vertical-align: middle;
+// }
 
 .prizeBox {
     width: 100%;
     float: left;
     margin: 10px 0;
-    background: #68309214;
-    border: 2px solid #683092;
-    border-radius: 20px;
+   // background: #68309214;
+  //  border: 2px solid #683092;
+   // border-radius: 20px;
     padding: 15px 25px;
     text-align: center;
 }
@@ -378,7 +383,7 @@
 }
 
 .prizeBox img {
-    max-width: 80px;
+     max-width: 100%;
 }
 
 .thankyou {
@@ -648,7 +653,7 @@ h2,
     .prizeBox {
         width: 46%;
         float: left;
-        margin: 0 2%;
+        margin: 0 27%;
     }
     .formsection {
         width: 100%;
@@ -667,7 +672,7 @@ h2,
     }
     .prizeBox .icn img {
         max-width: 75px;
-        max-height: 58px;
+        max-height: 58px;   
     }
     .prizeBox h4 {
         font-size: 20px;
@@ -676,8 +681,11 @@ h2,
         font-size: 38px;
     }
     .prizeBox {
-        padding: 15px;
+        padding: 8px 0px;
         border-radius: 14px;
+        margin-left: 19%;
+        // margin-left: 25%;
+       
     }
     .formsection {
         padding: 35px 4%;
@@ -755,6 +763,10 @@ h2,
     }
     .prizeBox h4 {
         font-size: 14px;
+    }
+    .prizeBox {
+        width: 62%;
+       
     }
     .prizeBox .icn img {
         max-width: 70px;
