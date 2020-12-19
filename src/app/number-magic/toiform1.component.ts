@@ -47,7 +47,7 @@ export class Toiform1Component implements OnInit {
      }
 
   ngOnInit() {
-   //  this.getListData()
+     this.getListData()
     this.createContactForm()
     
     
