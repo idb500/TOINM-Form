@@ -1,5 +1,5 @@
 
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators,FormControl } from  '@angular/forms';
 import { DataService } from '../data.service';
 import { Routes, RouterModule, Router, ActivatedRoute } from "@angular/router";
@@ -18,12 +18,12 @@ export class Toiform1Component implements OnInit {
   Doc_optional: File;
   ImageFile_optional: File
 
-  NewsOptions: any =  [{paperType: 'Business',checked:false, id: 1}, {paperType:'Sports',checked:false, id: 2}, {paperType:'City',checked:false, id: 3},{paperType:'Nation',checked:false, id: 4},{paperType:'Politics',checked:false, id: 5},{paperType:'International',checked:false, id: 6},{paperType:'Opinion',checked:false, id: 7},{paperType:'Times Life',checked:false, id: 8},{paperType:'Education Times',checked:false, id: 9},{paperType:"I don't read TOI",checked:false, id: 10}]
+  NewsOptions: any =  [{paperType: 'Business',checked:false, id: 1,isChecked : false}, {paperType:'Sports',checked:false, id: 2,isChecked : false}, {paperType:'City',checked:false, id: 3,isChecked : false},{paperType:'Nation',checked:false, id: 4,isChecked : false},{paperType:'Politics',checked:false, id: 5,isChecked : false},{paperType:'International',checked:false, id: 6,isChecked : false},{paperType:'Opinion',checked:false, id: 7,isChecked : false},{paperType:'Times Life',checked:false, id: 8,isChecked : false},{paperType:'Education Times',checked:false, id: 9,isChecked : false},{paperType:"I don't read TOI",checked:false, id: 10,isChecked : false}]
   // ageSelection: string[] = ['15-20','20-25'];
   gender: string[] = ['Male','Female'];
   selectedNewspaper:any=[];
   paperType1:any = [];
-  submitted:boolean = false;
+  submitted:boolean = false;disabledBtn:boolean = false;
   base64File: string = null;
   paramsValue:any;
   listDataRes:any;
@@ -32,26 +32,26 @@ export class Toiform1Component implements OnInit {
   id:any
   pincode: any
   buttonData:string = "Submit"
-  styleObject
+  styleObject;
+  cityData:any
   // file name
   fileInfo1: string;
   fileInfo: string;device_type:any='';
 
   constructor(private formBuilder: FormBuilder,private data:DataService,private route: ActivatedRoute,
-    private router: Router,private deviceService: DeviceDetectorService) {
+    private router: Router,private deviceService: DeviceDetectorService,private ngZone: NgZone) {
       this.getDeviceInfo()
       this.route.queryParams.subscribe(params => {
       this.paramsValue = params;
-     // console.log(this.paramsValue)
+  
       });
      }
 
   ngOnInit() {
      this.getListData()
-    this.createContactForm()
-    
-    
+      this.createContactForm()
   }
+  
   getDeviceInfo(){
     let info = this.deviceService.getDeviceInfo();
     if(info){
@@ -63,13 +63,13 @@ export class Toiform1Component implements OnInit {
   }
   createContactForm(){
     this.contactForm = this.formBuilder.group({
-      mobileNumber: [{ value: '', disabled: true }],
+      mobileNumber: [{ value: '', disabled: true }], // 
       fullName:['',Validators.required],
-      pincode: [{value:'',disabled: true}],
+      pincode: [{value:'',disabled: true}],  // 
       Gender: ['',Validators.required],
       Age: ['',Validators.required],
       City: ['',Validators.required],
-      NewsType: ['',],
+      NewsType: ['',Validators.required],
       Opinion: ['',Validators.required],
       Doc_proof: ['',Validators.required],
       Doc_proof_opt: [{value:'',disabled: true}]
@@ -93,14 +93,15 @@ export class Toiform1Component implements OnInit {
     {
     const file = input.files[0];
     if(Number(file.size) >= Number(5254872)){
-      this.fileInfo = "File size has exceeded";
+          this.fileInfo = "File size has exceeded";
+         // alert("proof is required");
     }
     else{
       this.fileInfo = `${file.name} (${formatBytes(file.size)})`;
     }
     }
   catch { }
-  //  console.log(this.fileInfo)
+
   }
   onFileSelect1(input: HTMLInputElement): void {
     this.fileInfo1 = ''
@@ -124,14 +125,16 @@ export class Toiform1Component implements OnInit {
     }
     }
     catch {}
-  //   console.log(this.fileInfo1)
+ 
   }
   
      onCheckBoxChanges(e: HTMLInputElement, id: number) {
       const index = this.NewsOptions.findIndex(_ => _.id === id);
       if (!(index > -1)) return;
       this.NewsOptions[index].isChecked = e.checked;
+    
      }
+
      get f() { return this.contactForm.controls; }
      toggleVisibility(e){
       this.marked= e.target.checked;
@@ -147,8 +150,7 @@ export class Toiform1Component implements OnInit {
       this.list = this.paramsValue.list
       this.id = this.paramsValue.id
       this.data.getListData(this.list, this.id).subscribe(res =>{
-          this.listDataRes = res;
-         // console.log(this.listDataRes.status)
+          this.listDataRes = res;      
           if(this.listDataRes.status === 205){
             // doc
             this.router.navigate(['/duplicate-entry']);
@@ -166,10 +168,12 @@ export class Toiform1Component implements OnInit {
           if(this.listDataRes.status === 200){
             // data
           let value = this.listDataRes.data;
-          if(value.city != ''){
+          if(value.city != '' && value.city != null ){
+            this.cityData = value.city
             this.contactForm.controls.City.setValue(value.city)
             this.contactForm.controls['City'].disable();
           }
+          this.pincode = value.pincode
           this.contactForm.controls.mobileNumber.setValue(value.phone);
           this.contactForm.controls.pincode.setValue(value.pincode);
         }
@@ -177,6 +181,10 @@ export class Toiform1Component implements OnInit {
     }
 
   onSubmit() {
+    if(this.fileInfo == 'File size has exceeded'){
+      alert('File size has exceeded')
+      return
+    }
     this.buttonData = "Please wait.."
     this.submitted = true;
     if (this.contactForm.invalid){
@@ -188,6 +196,13 @@ export class Toiform1Component implements OnInit {
     let newsArticle = this.selectedNewspaper[0].NewsType
     for (let data of newsArticle){
       this.paperType1.push(data.paperType)
+    }
+    if(this.contactForm.value['NewsType'].length == 0){
+        this.contactForm.controls['NewsType'].setValidators([Validators.required])
+          this.contactForm.controls["NewsType"].updateValueAndValidity();
+          this.buttonData = "Submit"
+          alert ("please select all required field")
+          return
     }
     const Image = this.Doc_proof.nativeElement;
     if(Image.files && Image.files[0]){
@@ -201,13 +216,12 @@ export class Toiform1Component implements OnInit {
       } 
       const formData: FormData = new FormData();
       // name,winningId,mobileNo,age,gender,city,pincode,preferred_content,file
-      console.log(this.selectedNewspaper[0].fullName)
       formData.append('messageid', this.id );
       formData.append('listid', this.list);
       formData.append('name', this.selectedNewspaper[0].fullName);
       formData.append('age', this.selectedNewspaper[0].Age);
       formData.append('gender', this.selectedNewspaper[0].Gender);
-      formData.append('city', this.selectedNewspaper[0].City);
+      formData.append('city', this.selectedNewspaper[0].City ? this.selectedNewspaper[0].City : this.cityData );
       formData.append('pincode', this.pincode );
       formData.append('question1', this.paperType1.join(','));
       formData.append('question2', this.selectedNewspaper[0].Opinion);
@@ -220,14 +234,24 @@ export class Toiform1Component implements OnInit {
 
       try {formData.append('doc_2', this.ImageFile_optional, this.ImageFile_optional.name );}
       catch { formData.append('doc_2', '');}
+      this.disabledBtn = true
+
       this.data.SearchData(formData).subscribe(result => {
        if(result){
+        this.event_tracking()
         this.buttonData = "Submit"
-     //   window.location.href = "https://wantmypaper.com/submitted.html";
+        //   window.location.href = "https://wantmypaper.com/submitted.html";
         this.router.navigate(['/thank-you']);
-       // console.log(res)
-       }
+        this.disabledBtn = false
+      }
+     },
+     (error) => { 
+      this.disabledBtn = false
+      this.buttonData = "Submit"
      })
+}
+event_tracking(){
+  this.data.eventTracking(this.listDataRes.data.phone,this.id,"button",'submit_form','front_end', this.list,'','','','','').subscribe(data =>{})
 }
 
 }

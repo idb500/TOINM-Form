@@ -78,11 +78,11 @@
                 </div>
                 <div class="form_row">
                     <div class="form_group w100">
-                        <label class="label bold">Which is your preferred content in The Times of India ? (optional)</label>
+                        <label class="label bold">Which is your preferred content in The Times of India ?*</label>
                         <div class="radioBtns">
                             <div class="custom-control custom-radio radio" *ngFor="let newoption of NewsOptions; let i = index;">
-                                <input type="checkbox" #el (change)="onCheckBoxChanges(el, newoption.id)" class="custom-control-input" [checked]="newoption.checked" formControlName="NewsType">
-                                <label class="custom-control-label">{{newoption.paperType}}</label>
+                                <input type="checkbox" #el (change)="onCheckBoxChanges(el, newoption.id)" class="custom-control-input" [checked]="newoption.checked" formControlName="NewsType" [ngClass]="{ 'is-invalid': submitted && f.NewsType.errors }">
+                                <label class="custom-control-label">{{newoption.paperType }}</label>
                             </div>
                         </div>
                     </div>
@@ -99,12 +99,15 @@
                     <div class="form_group w100 uploadFiles">
                         <div class="uploadDiv">
                             <div class="col8">
+                                <p class="font-size-15">Upload Winning Proof for Mobile Number: Please submit any document which has your
+                                    mobile number on it. Example – Mobile postpaid bills, Top-up screenshot for pre-paid
+                                    bills, Screenshot of mobile apps etc. (Max Size 5MB)</p>
                                 <!-- <p>Upload Winning Proof for Vehicle Registration no: Please submit any document which has your vehicle number on it. Example – picture of your number plate, etc.</p> -->
-                                <p class="font-size-15">Upload Winning Proof for Birthday: Please submit any document which has your birthday date on it. Example – Driving License, Voter Id, Passport, Pan Card, Aadhar Card etc. (Max Size 5MB)</p>
+                                <!-- <p class="font-size-15">Upload Winning Proof for Birthday: Please submit any document which has your birthday date on it. Example – Driving License, Voter Id, Passport, Pan Card, Aadhar Card etc. (Max Size 5MB)</p> -->
                             </div>
                             <div class="col4">
                                 <div class="fileBtn">
-                                    <input type="file" accept="all/*" #Doc_proof formControlName="Doc_proof" (change)="onFileSelect(Doc_proof)" [ngClass]="{ 'is-invalid': submitted && f.Doc_proof.errors }">
+                                    <input type="file" accept="image/*,.pdf" #Doc_proof formControlName="Doc_proof" (change)="onFileSelect(Doc_proof)" [ngClass]="{ 'is-invalid': submitted && f.Doc_proof.errors }">
                                     <label for="file1">Choose File and upload</label>
                                     <div *ngIf="submitted && f.Doc_proof.errors" class="invalid-feedback">
                                         <div class="error" *ngIf="f.Doc_proof.errors.required">document is required</div>
@@ -125,7 +128,7 @@
                                 <!-- class="fileBtn1" -->
                                 <div id="toglclass" [ngClass]="{'fileBtn1':!marked , 'fileBtn':marked }">
                                     <label for="file1">Choose File and upload</label>
-                                    <input type="file" accept="all/*" (change)="onFileSelect1(Doc_proof_opt)" #Doc_proof_opt formControlName="Doc_proof_opt">
+                                    <input type="file" accept="image/*" (change)="onFileSelect1(Doc_proof_opt)" #Doc_proof_opt formControlName="Doc_proof_opt">
                                 </div>
                                 <span class="fileNme" [ngClass]="{'redColor': fileInfo1 === 'File size has exceeded'}">{{fileInfo1}}</span>
                             </div>
@@ -136,7 +139,7 @@
                 <div class="form_row submit">
                     <div class="form_group w100">
                         <!-- class="btn"   ng-class="{'btn': contactForm.valid , 'btn': !contactForm.valid}"-->
-                        <button [ngClass]="{'btn': !contactForm.invalid, 'btn1': contactForm.invalid}" [disabled]='contactForm.invalid'>{{buttonData}}</button>
+                        <button [ngClass]="{'btn': !contactForm.invalid, 'btn1': contactForm.invalid}" [disabled]='contactForm.invalid || disabledBtn == true'>{{buttonData}}</button>
                     </div>
                 </div>
             </form>

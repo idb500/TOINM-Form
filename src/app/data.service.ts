@@ -22,4 +22,7 @@ export class DataService {
   eventFormData(data):Observable<any[]>{
     return this.http.post<any[]>(`${this.baseUrl}formsevent.php`,data);
   }
+  eventTracking(mobile,message_id,event_type,event_name,origin, list_id,remark_1,remark_2,remark_3,remark_4,remark_5):Observable<any[]>{
+    return this.http.post<any[]>(`${this.baseUrl}event.php`,{mobile,message_id,event_type,event_name,origin, list_id,remark_1,remark_2,remark_3,remark_4,remark_5})
+  }
 }
