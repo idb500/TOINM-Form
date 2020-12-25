@@ -108,10 +108,12 @@
                             <div class="col4">
                                 <div class="fileBtn">
                                     <input type="file" accept="image/*,.pdf" #Doc_proof formControlName="Doc_proof" (change)="onFileSelect(Doc_proof)" [ngClass]="{ 'is-invalid': submitted && f.Doc_proof.errors }">
+
                                     <label for="file1">Choose File and upload</label>
                                     <div *ngIf="submitted && f.Doc_proof.errors" class="invalid-feedback">
                                         <div class="error" *ngIf="f.Doc_proof.errors.required">document is required</div>
                                     </div>
+                                    <p class="error" style="color: red;" *ngIf="file_doc == true">Please upload the file again</p>
                                 </div>
                                 <span class="fileNme" [ngClass]="{'redColor': fileInfo === 'File size has exceeded'}">{{fileInfo}}</span>
                             </div>
@@ -138,6 +140,7 @@
                 </div>
                 <div class="form_row submit">
                     <div class="form_group w100">
+                        <p class="error" style="color: red;" *ngIf ="allFields == true">Please fill all the mandatory (*) fields</p>
                         <!-- class="btn"   ng-class="{'btn': contactForm.valid , 'btn': !contactForm.valid}"-->
                         <button [ngClass]="{'btn': !contactForm.invalid, 'btn1': contactForm.invalid}" [disabled]='contactForm.invalid || disabledBtn == true'>{{buttonData}}</button>
                     </div>

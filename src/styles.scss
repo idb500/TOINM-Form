@@ -713,3 +713,9 @@ h3 {
 /* Responsive End */
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.swal2-icon.swal2-warning {
+    border-color: red !important;
+    color: red !important;
+}

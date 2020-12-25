@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators,FormControl } from  '@angular/forms'
 import { DataService } from '../data.service';
 import { Routes, RouterModule, Router, ActivatedRoute } from "@angular/router";
 import { DeviceDetectorService } from 'ngx-device-detector';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-toiform1',
   templateUrl: './toiform1.component.html',
@@ -37,17 +39,18 @@ export class Toiform1Component implements OnInit {
   // file name
   fileInfo1: string;
   fileInfo: string;device_type:any='';
+  formResult:any
+  file_doc:boolean = false;allFields:boolean = false;
 
   constructor(private formBuilder: FormBuilder,private data:DataService,private route: ActivatedRoute,
     private router: Router,private deviceService: DeviceDetectorService,private ngZone: NgZone) {
       this.getDeviceInfo()
       this.route.queryParams.subscribe(params => {
-      this.paramsValue = params;
-  
-      });
-     }
+      this.paramsValue = params;});
+  }
 
   ngOnInit() {
+
      this.getListData()
       this.createContactForm()
   }
@@ -67,11 +70,11 @@ export class Toiform1Component implements OnInit {
       fullName:['',Validators.required],
       pincode: [{value:'',disabled: true}],  // 
       Gender: ['',Validators.required],
-      Age: ['',Validators.required],
+      Age: ['',[Validators.required,Validators.maxLength(3), Validators.max(120), Validators.min(1)]],
       City: ['',Validators.required],
       NewsType: ['',Validators.required],
       Opinion: ['',Validators.required],
-      Doc_proof: ['',Validators.required],
+      Doc_proof: ['',Validators.required], 
       Doc_proof_opt: [{value:'',disabled: true}]
     });
       }
@@ -94,10 +97,13 @@ export class Toiform1Component implements OnInit {
     const file = input.files[0];
     if(Number(file.size) >= Number(5254872)){
           this.fileInfo = "File size has exceeded";
+        this.event_tracking("file",'proof_size_exceeded',file.size)
+
          // alert("proof is required");
     }
     else{
       this.fileInfo = `${file.name} (${formatBytes(file.size)})`;
+      this.event_tracking("file",'proof',file.size)
     }
     }
   catch { }
@@ -119,9 +125,13 @@ export class Toiform1Component implements OnInit {
     const file = input.files[0];
     if(Number(file.size) >= Number(5254872)){
       this.fileInfo1 = "File size has exceeded";
+      this.event_tracking("file",'selfie_size_exceeded',file.size)
     }
     else{
+     
       this.fileInfo1 = `${file.name} (${formatBytes(file.size)})`;
+      this.event_tracking("file",'selfie',file.size)
+     
     }
     }
     catch {}
@@ -139,10 +149,15 @@ export class Toiform1Component implements OnInit {
      toggleVisibility(e){
       this.marked= e.target.checked;
       if(this.marked == false){
+        this.fileInfo1 = ''
+        this.event_tracking("radio_button",'Selfie_unchecked')
         this.contactForm.controls['Doc_proof_opt'].disable();
       }
       else
-      {this.contactForm.controls['Doc_proof_opt'].enable();}
+      { 
+        this.event_tracking("radio_button",'Selfie_checked')
+        this.contactForm.controls['Doc_proof_opt'].enable();
+      }
      
     }
 
@@ -150,7 +165,9 @@ export class Toiform1Component implements OnInit {
       this.list = this.paramsValue.list
       this.id = this.paramsValue.id
       this.data.getListData(this.list, this.id).subscribe(res =>{
-          this.listDataRes = res;      
+          this.listDataRes = res;  
+         // this.event_tracking("event",'get_data')
+
           if(this.listDataRes.status === 205){
             // doc
             this.router.navigate(['/duplicate-entry']);
@@ -181,10 +198,15 @@ export class Toiform1Component implements OnInit {
     }
 
   onSubmit() {
-    if(this.fileInfo == 'File size has exceeded'){
-      alert('File size has exceeded')
+    if(this.fileInfo == 'File size has exceeded'  ){
+     // alert('File size has exceeded')
       return
     }
+    if(this.fileInfo1 == "File size has exceeded"  ){
+     // alert('File size has exceeded')
+      return
+    }
+   // this.fileInfo1 == 
     this.buttonData = "Please wait.."
     this.submitted = true;
     if (this.contactForm.invalid){
@@ -206,11 +228,13 @@ export class Toiform1Component implements OnInit {
     }
     const Image = this.Doc_proof.nativeElement;
     if(Image.files && Image.files[0]){
+     
       this.Doc_proof1 = Image.files[0];
       this.ImageFile = this.Doc_proof1
     }
      const Image_opt = this.Doc_proof_opt.nativeElement
      if(Image_opt.files && Image_opt.files[0]){
+     
       this.Doc_optional = Image_opt.files[0];
       this.ImageFile_optional = this.Doc_optional
       } 
@@ -225,24 +249,57 @@ export class Toiform1Component implements OnInit {
       formData.append('pincode', this.pincode );
       formData.append('question1', this.paperType1.join(','));
       formData.append('question2', this.selectedNewspaper[0].Opinion);
-      formData.append('doc_1', this.ImageFile, this.ImageFile.name);
+      formData.append('doc_1',this.ImageFile, this.ImageFile.name );
       formData.append('browser_info', this.deviceService.browser );
       formData.append('device_info',this.device_type );
       formData.append('location', '');
       formData.append('os_type', this.deviceService.os);
 
 
-      try {formData.append('doc_2', this.ImageFile_optional, this.ImageFile_optional.name );}
-      catch { formData.append('doc_2', '');}
+      // try {}
+      // catch { formData.append('doc_2', '');}
+      if(this.marked == false){
+        formData.append('doc_2', '');
+      }
+      else(formData.append('doc_2', this.ImageFile_optional, this.ImageFile_optional.name ))
       this.disabledBtn = true
 
       this.data.SearchData(formData).subscribe(result => {
        if(result){
-        this.event_tracking()
-        this.buttonData = "Submit"
-        //   window.location.href = "https://wantmypaper.com/submitted.html";
-        this.router.navigate(['/thank-you']);
-        this.disabledBtn = false
+         this.formResult = result
+         if(this.formResult.status == 404){
+          this.buttonData = "Submit"
+          this.file_doc = true;
+          // alert("please select document")
+           return
+
+         }
+         else if(this.formResult.status == 201){
+          this.event_tracking("button",'submit_form')
+          this.buttonData = "Submit"
+          //   window.location.href = "https://wantmypaper.com/submitted.html";
+          this.router.navigate(['/thank-you']);
+          
+           
+         }
+         else if(this.formResult.status == 405){
+          this.buttonData = "Submit"
+          this.disabledBtn = false
+          this.allFields = true
+          return
+         }
+         else {
+          this.buttonData = "Submit"
+          this.disabledBtn = false
+          Swal.fire({
+            title: 'Oops! something went wrong',
+            text: 'Please fill the form again',
+            icon: 'warning',
+            confirmButtonText: 'OK'
+          })
+           return
+         }
+       
       }
      },
      (error) => { 
@@ -250,8 +307,8 @@ export class Toiform1Component implements OnInit {
       this.buttonData = "Submit"
      })
 }
-event_tracking(){
-  this.data.eventTracking(this.listDataRes.data.phone,this.id,"button",'submit_form','front_end', this.list,'','','','','').subscribe(data =>{})
+event_tracking(event_type, event_name,file_size?){
+  this.data.eventTracking(this.listDataRes.data.phone,this.id,event_type,event_name,'front_end', this.list,file_size,'','','','').subscribe(data =>{})
 }
 
 }

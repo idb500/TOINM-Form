@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 })
 export class DataService {
   baseUrl = "https://toinm.com/submitfile/"
+
   constructor(private http: HttpClient) { }
 // name,winningId,mobileNo,age,gender,city,pincode,preferred_content,file
   SearchData(formData):Observable<any[]>{
